@@ -23,7 +23,7 @@ window.renderStatistics = function (ctx, names, times) {
   } // вычисляю наибольшее время
 
   var histogramHeight = 150; // px
-  var step = histogramHeight / - max; // высчитываю величину для нормирования гистограммы
+  var step = histogramHeight / -max; // высчитываю величину для нормирования гистограммы
   var barWidth = 40;  // px;
   var indent = barWidth + 50; // px;
   var initialX = 140; // px;
