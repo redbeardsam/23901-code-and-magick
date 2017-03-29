@@ -33,10 +33,9 @@ window.renderStatistics = function (ctx, names, times) {
   for (var i = 0; i < times.length; i++) {
     var barHeight = times[i] * step;
     var barX = initialX + indent * i;
-    var time = times[i];
     var name = names[i];
     ctx.fillStyle = 'black';
-    ctx.fillText(time.toFixed(0), barX, initialY + barHeight - 10);  // время игроков
+    ctx.fillText(times[i].toFixed(0), barX, initialY + barHeight - 10);  // время игроков
     ctx.fillText(name, barX, initialY + 20); // имена игроков
     if (name === 'Вы') {
       ctx.fillStyle = 'rgba(255, 0, 0, 1)';
