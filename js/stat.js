@@ -23,21 +23,26 @@ window.renderStatistics = function (ctx, names, times) {
   } // вычисляю наибольшее время
 
   var histogramHeight = 150; // px
-  var step = histogramHeight / max; // высчитываю величину для нормирования гистограммы
+  var step = histogramHeight / - max; // высчитываю величину для нормирования гистограммы
   var barWidth = 40;  // px;
   var indent = barWidth + 50; // px;
   var initialX = 140; // px;
   var initialY = 240; // px;
 
+
   for (var i = 0; i < times.length; i++) {
+    var barHeight = times[i] * step;
+    var barX = initialX + indent * i;
+    var time = times[i];
+    var name = names[i];
     ctx.fillStyle = 'black';
-    ctx.fillText(times[i].toFixed(0), initialX + indent * i, initialY - (step + 10));  // время игроков
-    ctx.fillText(names[i], initialX + indent * i, initialY + 20); // имена игроков
-    if (names[i] === 'Вы') {
+    ctx.fillText(time.toFixed(0), barX, initialY + barHeight - 10);  // время игроков
+    ctx.fillText(name, barX, initialY + 20); // имена игроков
+    if (name === 'Вы') {
       ctx.fillStyle = 'rgba(255, 0, 0, 1)';
     } else {
       ctx.fillStyle = 'rgba(0, 0, 255, ' + Math.random() + ')';
     }
-    ctx.fillRect(initialX + indent * i, initialY, barWidth, times[i] * step); // столбцы
+    ctx.fillRect(barX, initialY, barWidth, barHeight); // столбцы
   } // рисую гистограмму
 };
