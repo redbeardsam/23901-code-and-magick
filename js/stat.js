@@ -14,28 +14,23 @@ window.renderStatistics = function (ctx, names, times) {
   ctx.fillText('Список результатов:', 120, 60); // рисую надписи
 
   var max = -1; // задаю переменную наибольшего времени
-
-  for (var i = 0; i < times.length; i++) {
-    var time = times[i];  // переменная для поиска времени
-    if (time > max) {
-      max = time;
-    }
-  } // вычисляю наибольшее время
-
   var histogramHeight = 150; // px
-  var step = histogramHeight / -max; // высчитываю величину для нормирования гистограммы
   var barWidth = 40;  // px;
   var indent = barWidth + 50; // px;
   var initialX = 140; // px;
   var initialY = 240; // px;
 
-
   for (var i = 0; i < times.length; i++) {
-    var barHeight = times[i] * step;
-    var barX = initialX + indent * i;
     var name = names[i];
+    var time = times[i];
+    if (time > max) {
+      max = time;
+    }
+    var step = histogramHeight / -max;  // высчитываю величину для нормирования гистограммы
+    var barHeight = time * step;
+    var barX = initialX + indent * i;
     ctx.fillStyle = 'black';
-    ctx.fillText(times[i].toFixed(0), barX, initialY + barHeight - 10);  // время игроков
+    ctx.fillText(time.toFixed(0), barX, initialY + barHeight - 10);  // время игроков
     ctx.fillText(name, barX, initialY + 20); // имена игроков
     if (name === 'Вы') {
       ctx.fillStyle = 'rgba(255, 0, 0, 1)';
