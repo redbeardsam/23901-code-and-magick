@@ -17,7 +17,7 @@ window.renderStatistics = function (ctx, names, times) {
   var BAR_WIDTH = 40;  // px;
   var INITIAL_X = 140; // px;
   var INITIAL_Y = 240; // px;
-  Array.prototype.max = function() {
+  times.max = function () {
     return Math.max.apply(null, this);
   };
   var STEP = HISTOGRAM_HEIGHT / -times.max();
@@ -27,7 +27,7 @@ window.renderStatistics = function (ctx, names, times) {
     var time = times[i];
     var INDENT = BAR_WIDTH + 50; // px;
     var BAR_HEIGHT = time * STEP;
-    var BAR_X= INITIAL_X + INDENT * i;
+    var BAR_X = INITIAL_X + INDENT * i;
     ctx.fillStyle = 'black';
     ctx.fillText(time.toFixed(0), BAR_X, INITIAL_Y + BAR_HEIGHT - 10);  // время игроков
     ctx.fillText(name, BAR_X, INITIAL_Y + 20); // имена игроков
