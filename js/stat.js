@@ -13,30 +13,29 @@ window.renderStatistics = function (ctx, names, times) {
   ctx.fillText('Ура вы победили!', 120, 40);
   ctx.fillText('Список результатов:', 120, 60); // рисую надписи
 
-  var max = -1; // задаю переменную наибольшего времени
-  var histogramHeight = 150; // px
-  var barWidth = 40;  // px;
-  var indent = barWidth + 50; // px;
-  var initialX = 140; // px;
-  var initialY = 240; // px;
+  var HISTOGRAM_HEIGHT = 150; // px
+  var BAR_WIDTH = 40;  // px;
+  var INITIAL_X = 140; // px;
+  var INITIAL_Y = 240; // px;
+  Array.prototype.max = function() {
+    return Math.max.apply(null, this);
+  };
+  var STEP = HISTOGRAM_HEIGHT / -times.max();
 
   for (var i = 0; i < times.length; i++) {
     var name = names[i];
     var time = times[i];
-    if (time > max) {
-      max = time;
-    }
-    var step = histogramHeight / -max;  // высчитываю величину для нормирования гистограммы
-    var barHeight = time * step;
-    var barX = initialX + indent * i;
+    var INDENT = BAR_WIDTH + 50; // px;
+    var BAR_HEIGHT = time * STEP;
+    var BAR_X= INITIAL_X + INDENT * i;
     ctx.fillStyle = 'black';
-    ctx.fillText(time.toFixed(0), barX, initialY + barHeight - 10);  // время игроков
-    ctx.fillText(name, barX, initialY + 20); // имена игроков
+    ctx.fillText(time.toFixed(0), BAR_X, INITIAL_Y + BAR_HEIGHT - 10);  // время игроков
+    ctx.fillText(name, BAR_X, INITIAL_Y + 20); // имена игроков
     if (name === 'Вы') {
       ctx.fillStyle = 'rgba(255, 0, 0, 1)';
     } else {
       ctx.fillStyle = 'rgba(0, 0, 255, ' + Math.random() + ')';
     }
-    ctx.fillRect(barX, initialY, barWidth, barHeight); // столбцы
+    ctx.fillRect(BAR_X, INITIAL_Y, BAR_WIDTH, BAR_HEIGHT); // столбцы
   } // рисую гистограмму
 };
