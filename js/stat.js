@@ -17,10 +17,8 @@ window.renderStatistics = function (ctx, names, times) {
   var BAR_WIDTH = 40;  // px;
   var INITIAL_X = 140; // px;
   var INITIAL_Y = 240; // px;
-  times.max = function () {
-    return Math.max.apply(null, this);
-  };
-  var STEP = HISTOGRAM_HEIGHT / -times.max();
+  var maxTime = Math.max.apply(null, times);
+  var STEP = HISTOGRAM_HEIGHT / -maxTime;
 
   for (var i = 0; i < times.length; i++) {
     var name = names[i];
