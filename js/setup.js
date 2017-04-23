@@ -4,9 +4,8 @@ function showUserDialog() {
   var userDialog = document.querySelector('.setup');
   userDialog.classList.remove('hidden');
   userDialog.querySelector('.setup-similar').classList.remove('hidden');
-  return showUserDialog;
+  return userDialog;
 }
-showUserDialog();
 
 function shuffle(array) {
   var currentIndex = array.length, temporaryValue, randomIndex;
@@ -20,26 +19,25 @@ function shuffle(array) {
   return array;
 }
 
-var WIZARD_FIRST_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
-var WIZARD_SECOND_NAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
-var COAT_COLOR = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
-var EYES_COLOR = ['black', 'red', 'blue', 'yellow', 'green'];
-WIZARD_FIRST_NAMES = shuffle(WIZARD_FIRST_NAMES);
-WIZARD_SECOND_NAMES = shuffle(WIZARD_SECOND_NAMES);
-COAT_COLOR = shuffle(COAT_COLOR);
-EYES_COLOR = shuffle(EYES_COLOR);
+var wizardFirstNames = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
+var wizardSecondNames = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
+var coatColor = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
+var eyesColor = ['black', 'red', 'blue', 'yellow', 'green'];
+wizardFirstNames = shuffle(wizardFirstNames);
+wizardSecondNames = shuffle(wizardSecondNames);
+coatColor = shuffle(coatColor);
+eyesColor = shuffle(eyesColor);
 
 function getRandomWizardName() {
-  return WIZARD_FIRST_NAMES.pop() + ' ' + WIZARD_SECOND_NAMES.pop();
+  return wizardFirstNames.pop() + ' ' + wizardSecondNames.pop();
 }
 
 function getRandomWizard() {
-  var randomWizard = {
+  return {
     name: getRandomWizardName(),
-    coatColor: COAT_COLOR.pop(),
-    eyesColor: EYES_COLOR.pop()
+    coatColor: coatColor.pop(),
+    eyesColor: eyesColor.pop()
   };
-  return randomWizard;
 }
 
 function getWizards(countWizard) {
@@ -72,4 +70,6 @@ function renderWizardsList() {
   similarListElement.appendChild(fragment);
   return fragment;
 }
+
 renderWizardsList();
+showUserDialog();
