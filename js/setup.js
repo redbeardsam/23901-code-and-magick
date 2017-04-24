@@ -19,15 +19,6 @@ function shuffle(array) {
   return array;
 }
 
-var wizardFirstNames = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
-var wizardSecondNames = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
-var coatColor = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
-var eyesColor = ['black', 'red', 'blue', 'yellow', 'green'];
-wizardFirstNames = shuffle(wizardFirstNames);
-wizardSecondNames = shuffle(wizardSecondNames);
-coatColor = shuffle(coatColor);
-eyesColor = shuffle(eyesColor);
-
 function getRandomWizardName() {
   return wizardFirstNames.pop() + ' ' + wizardSecondNames.pop();
 }
@@ -47,7 +38,6 @@ function getWizards(countWizard) {
   }
   return wizards;
 }
-var WIZARDS = getWizards(4);
 
 var similarListElement = document.querySelector('.setup-similar-list');
 var similarWizardTemplate = document.querySelector('#similar-wizard-template').content;
@@ -71,5 +61,14 @@ function renderWizardsList() {
   return fragment;
 }
 
+var WIZARD_FIRST_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
+var WIZARD_SECOND_NAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
+var COAT_COLOR = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
+var EYES_COLOR = ['black', 'red', 'blue', 'yellow', 'green'];
+var wizardFirstNames = shuffle(WIZARD_FIRST_NAMES);
+var wizardSecondNames = shuffle(WIZARD_SECOND_NAMES);
+var coatColor = shuffle(COAT_COLOR);
+var eyesColor = shuffle(EYES_COLOR);
+var WIZARDS = getWizards(4);
 renderWizardsList();
 showUserDialog();
